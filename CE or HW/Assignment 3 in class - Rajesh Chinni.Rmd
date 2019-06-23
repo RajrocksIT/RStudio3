@@ -1,0 +1,60 @@
+---
+title: "class exercise by Rajesh Chinni"
+output: html_document
+---
+
+```{r}
+# ?read.table
+scores <- read.table('http://yegingenc.com/lectures/data/SampleStudentGrades.txt', header = TRUE)
+scores
+# Which variables are numerical?
+is.numeric(scores$Student_ID)
+is.numeric(scores$Semester)
+is.numeric(scores$Grades)
+sapply(scores, is.numeric)
+
+# What are average and standard deviations for each semester?
+Fall14semester <- subset(scores, Semester=="14_Fall")
+Fall14semester
+Fall15semester <- subset(scores, Semester=="15_Fall")
+Fall15semester
+Spring15semester <- subset(scores, Semester=="15_Spring")
+Spring15semester
+mean(Fall14semester$Grades)
+mean(Fall15semester$Grades)
+mean(Spring15semester$Grades)
+sd(Fall14semester$Grades)
+sd(Fall15semester$Grades)
+sd(Spring15semester$Grades)
+
+# Plot a histogram for the grades? Judging by the histogram you just created what can you say about the distribution?
+hist(scores$Grades)
+# The distriution is negatively skewed
+
+#Calculate the skewness of the data.
+
+Skewness=3 * mean(scores$Grades)-median(scores$Grades)/sd(scores$Grades)
+Skewness
+
+```
+
+```{r}
+# Removing the outliers using transformation for variable grades which is not normally distributed
+
+
+#Log Transformation
+log.tr_grades = log(scores$Grades)
+
+#Square Transformation
+sqrt.tr_grades = sqrt(scores$Grades)
+
+#Inverse Square root Transformation
+inv.sqrt.tr_grades = 1/sqrt(scores$Grades)
+
+# Creating histograms for the transformed data for comparison
+hist(scores$Grades, main = "Raw Data Fulltime Undergrad ")
+hist(log.tr_grades, main = "Log Transformtion")
+hist(sqrt.tr_grades, main = " Square-root Transformation")
+hist(inv.sqrt.tr_grades, main = "Inverse Square-root Transformation")
+```
+

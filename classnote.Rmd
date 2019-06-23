@@ -1,0 +1,19 @@
+---
+title: "classnotes"
+output: html_document
+---
+
+```{r}
+mean(mtcars$mpg)
+hist(mtcars$mpg)
+
+mtcars[mtcars$mpg>30,]
+hist(mtcars[mtcars$cyl>4,]$mpg)
+hist(mtcars[mtcars$cyl>4,]$mpg, probability = T)
+mtcars
+table(as.factor(mtcars$cyl))
+
+
+
+```
+
